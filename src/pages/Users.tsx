@@ -5,7 +5,6 @@ import {
     Card,
     CardContent,
     CircularProgress,
-    Grid,
     Paper,
     Tab,
     Table,
@@ -18,6 +17,7 @@ import {
     Tabs,
     Typography,
 } from '@mui/material';
+import Grid2 from '@mui/material/GridLegacy';
 import {BarChart as BarChartIcon, List as ListIcon, People as PeopleIcon} from '@mui/icons-material';
 import {usersService} from '../services/api';
 import type {User, UserStats} from '../types';
@@ -33,7 +33,7 @@ const Users: React.FC = () => {
     const [rowsPerPage, setRowsPerPage] = useState<number>(10);
     const [total, setTotal] = useState<number>(0);
 
-    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
         if (newValue === 1 && !stats) {
             fetchStats();
@@ -83,7 +83,7 @@ const Users: React.FC = () => {
         loadData();
     }, [page, rowsPerPage]);
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 
@@ -161,7 +161,7 @@ const Users: React.FC = () => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {users.map((user, index) => (
+                                        {users.map((user) => (
                                             <TableRow 
                                                 key={user.id}
                                                 sx={{ 
@@ -213,8 +213,8 @@ const Users: React.FC = () => {
                             <CircularProgress/>
                         </Box>
                     ) : stats ? (
-                        <Grid component="div" container spacing={3} sx={{mb: 4}}>
-                            <Grid component="div" item xs={12} sm={6} md={3}>
+                        <Grid2 container spacing={3} sx={{mb: 4}}>
+                            <Grid2 item xs={12} sm={6} md={3}>
                                 <Paper elevation={3} sx={{height: '100%'}}>
                                     <Card sx={{height: '100%'}}>
                                         <CardContent sx={{textAlign: 'center'}}>
@@ -228,8 +228,8 @@ const Users: React.FC = () => {
                                         </CardContent>
                                     </Card>
                                 </Paper>
-                            </Grid>
-                            <Grid component="div" item xs={12} sm={6} md={3}>
+                            </Grid2>
+                            <Grid2 item xs={12} sm={6} md={3}>
                                 <Paper elevation={3} sx={{height: '100%'}}>
                                     <Card sx={{height: '100%'}}>
                                         <CardContent sx={{textAlign: 'center'}}>
@@ -243,8 +243,8 @@ const Users: React.FC = () => {
                                         </CardContent>
                                     </Card>
                                 </Paper>
-                            </Grid>
-                            <Grid component="div" item xs={12} sm={6} md={3}>
+                            </Grid2>
+                            <Grid2 item xs={12} sm={6} md={3}>
                                 <Paper elevation={3} sx={{height: '100%'}}>
                                     <Card sx={{height: '100%'}}>
                                         <CardContent sx={{textAlign: 'center'}}>
@@ -258,8 +258,8 @@ const Users: React.FC = () => {
                                         </CardContent>
                                     </Card>
                                 </Paper>
-                            </Grid>
-                            <Grid component="div" item xs={12} sm={6} md={3}>
+                            </Grid2>
+                            <Grid2 item xs={12} sm={6} md={3}>
                                 <Paper elevation={3} sx={{height: '100%'}}>
                                     <Card sx={{height: '100%'}}>
                                         <CardContent sx={{textAlign: 'center'}}>
@@ -273,8 +273,8 @@ const Users: React.FC = () => {
                                         </CardContent>
                                     </Card>
                                 </Paper>
-                            </Grid>
-                        </Grid>
+                            </Grid2>
+                        </Grid2>
                     ) : (
                         <Alert severity="info">No statistics available</Alert>
                     )}

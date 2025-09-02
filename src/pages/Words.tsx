@@ -38,7 +38,7 @@ import {
     Visibility as VisibilityIcon
 } from '@mui/icons-material';
 import {wordsService} from '../services/api';
-import type {PaginatedResponse, Word} from '../types';
+import type {Word} from '../types';
 
 // Generate mock words for testing
 const generateMockWords = (count: number): Word[] => {
@@ -188,7 +188,7 @@ const Words: React.FC = () => {
         fetchWords(page, rowsPerPage);
     }, [page, rowsPerPage, useMockData, searchQuery, fetchWords]);
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 
@@ -717,7 +717,7 @@ const Words: React.FC = () => {
                         fullWidth
                         variant="outlined"
                         value={editFormData.synonyms?.join(', ')}
-                        onChange={(e) => handleArrayChange(e, 'synonyms')}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleArrayChange(e, 'synonyms')}
                         helperText="Enter synonyms separated by commas"
                     />
                     <TextField
@@ -789,7 +789,7 @@ const Words: React.FC = () => {
                         fullWidth
                         variant="outlined"
                         value={editFormData.synonyms?.join(', ')}
-                        onChange={(e) => handleArrayChange(e, 'synonyms')}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleArrayChange(e, 'synonyms')}
                         helperText="Enter synonyms separated by commas"
                     />
                     <TextField

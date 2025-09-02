@@ -2,11 +2,11 @@ import React from 'react';
 import { 
   Box, 
   Typography, 
-  Grid, 
   Paper, 
   Card, 
   CardContent
 } from '@mui/material';
+import Grid2 from '@mui/material/GridLegacy';
 import {
   People as PeopleIcon,
   Bookmark as BookmarkIcon,
@@ -52,9 +52,9 @@ const Dashboard: React.FC = () => {
         Welcome back, {user?.username || user?.email || 'Admin'}!
       </Typography>
 
-      <Grid container spacing={3} sx={{ mt: 2 }}>
+      <Grid2 container spacing={3} sx={{ mt: 2 }}>
         {stats.map((stat, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
+          <Grid2 item xs={12} sm={6} md={3} key={index}>
             <Paper elevation={3} sx={{ height: '100%' }}>
               <Card sx={{ height: '100%' }}>
                 <CardContent sx={{ textAlign: 'center' }}>
@@ -68,12 +68,12 @@ const Dashboard: React.FC = () => {
                 </CardContent>
               </Card>
             </Paper>
-          </Grid>
+          </Grid2>
         ))}
-      </Grid>
+      </Grid2>
 
-      <Grid container spacing={3} sx={{ mt: 3 }}>
-        <Grid item xs={12} md={6}>
+      <Grid2 container spacing={3} sx={{ mt: 3 }}>
+        <Grid2 item xs={12} md={6}>
           <Paper elevation={3} sx={{ p: 2 }}>
             <Typography variant="h6" gutterBottom>
               Recent Activity
@@ -82,9 +82,9 @@ const Dashboard: React.FC = () => {
               No recent activity to display.
             </Typography>
           </Paper>
-        </Grid>
+        </Grid2>
 
-        <Grid item xs={12} md={6}>
+        <Grid2 item xs={12} md={6}>
           <Paper elevation={3} sx={{ p: 2 }}>
             <Typography variant="h6" gutterBottom>
               System Information
@@ -99,8 +99,8 @@ const Dashboard: React.FC = () => {
               <strong>API Status:</strong> Online
             </Typography>
           </Paper>
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
     </Box>
   );
 };
