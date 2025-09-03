@@ -1,7 +1,10 @@
 import axios, {type AxiosInstance} from 'axios';
 import type {
-    ApiResponse,
+    ApiResponse, Comment,
     Example,
+    Game,
+    GameAnswer,
+    GameQuestion,
     LoginRequest,
     LoginResponse,
     PaginatedResponse,
@@ -9,10 +12,7 @@ import type {
     UserStats,
     VerbForm,
     Word,
-    WordDefinition,
-    Game,
-    GameQuestion,
-    GameAnswer
+    WordDefinition
 } from '../types';
 
 const apiURL = import.meta.env.VITE_API_URL;
@@ -216,8 +216,9 @@ export const commentsService = {
         if (search) {
             url += `&search=${encodeURIComponent(search)}`;
         }
-        const response = await api.get<ApiResponse<PaginatedResponse<Comment>>>(url);
-        return response.data.data;
+        const response = await api.get<PaginatedResponse<Comment>>(url);
+
+        return response.data;
     },
     updateComment: async (id: string, data: Partial<Comment>) => {
         const response = await api.patch<ApiResponse<Comment>>(`/comments/${id}`, data);

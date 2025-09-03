@@ -137,11 +137,6 @@ const Users: React.FC = () => {
                                                 fontWeight: 'bold', 
                                                 backgroundColor: '#f5f5f5',
                                                 borderBottom: '2px solid #1976d2'
-                                            }}>ID</TableCell>
-                                            <TableCell sx={{ 
-                                                fontWeight: 'bold', 
-                                                backgroundColor: '#f5f5f5',
-                                                borderBottom: '2px solid #1976d2'
                                             }}>Email</TableCell>
                                             <TableCell sx={{ 
                                                 fontWeight: 'bold', 
@@ -169,7 +164,6 @@ const Users: React.FC = () => {
                                                     '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' }
                                                 }}
                                             >
-                                                <TableCell sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.id}</TableCell>
                                                 <TableCell sx={{ minWidth: 200 }}>{user.email}</TableCell>
                                                 <TableCell sx={{ textAlign: 'center' }}>{user.bookmarksCount || 0}</TableCell>
                                                 <TableCell sx={{ minWidth: 180 }}>{formatDate(user.createdAt)}</TableCell>
@@ -178,7 +172,7 @@ const Users: React.FC = () => {
                                         ))}
                                         {users.length === 0 && (
                                             <TableRow>
-                                                <TableCell colSpan={5} align="center">
+                                                <TableCell colSpan={4} align="center">
                                                     No users found
                                                 </TableCell>
                                             </TableRow>

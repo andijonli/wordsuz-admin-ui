@@ -48,14 +48,13 @@ const menuItems: MenuItem[] = [
 ];
 
 const Layout: React.FC = () => {
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [drawerExpanded, setDrawerExpanded] = useState(true);
+    const [mobileOpen, setMobileOpen] = useState(true);
+    const [drawerExpanded, setDrawerExpanded] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
     const {logout} = useAuth();
     const navigate = useNavigate();
     const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
 
-    // Calculate current drawer width based on state
     const currentDrawerWidth = isDesktop
         ? (drawerExpanded || isHovering ? drawerWidth : miniDrawerWidth)
         : drawerWidth;

@@ -69,11 +69,11 @@ const generateMockComments = (count: number): Comment[] => {
         const randomText = mockTexts[Math.floor(Math.random() * mockTexts.length)];
 
         const createdAt = new Date();
-        createdAt.setDate(createdAt.getDate() - Math.floor(Math.random() * 30)); // Random date within last 30 days
+        createdAt.setDate(createdAt.getDate() - Math.floor(Math.random() * 30));
 
         const updatedAt = new Date(createdAt);
-        if (Math.random() > 0.7) { // 30% chance the comment was updated
-            updatedAt.setHours(updatedAt.getHours() + Math.floor(Math.random() * 48)); // Updated within 48 hours
+        if (Math.random() > 0.7) {
+            updatedAt.setHours(updatedAt.getHours() + Math.floor(Math.random() * 48));
         }
 
         return {
@@ -172,7 +172,7 @@ const Comments: React.FC = () => {
 
     useEffect(() => {
         if (useMockData && mockComments.length === 0) {
-            setMockComments(generateMockComments(50)); // Generate 50 mock comments
+            setMockComments(generateMockComments(50));
         }
     }, []);
 
@@ -180,7 +180,6 @@ const Comments: React.FC = () => {
         fetchComments(page, rowsPerPage);
     }, [page, rowsPerPage, useMockData, searchQuery, fetchComments]);
 
-    // eslint-disable-next-line
     const handleChangePage = (_event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -225,7 +224,7 @@ const Comments: React.FC = () => {
             setLoading(true);
             await commentsService.updateComment(selectedComment.id, editFormData);
             setOpenEditDialog(false);
-            fetchComments(page, rowsPerPage);
+            await fetchComments(page, rowsPerPage);
         } catch (err) {
             console.error('Failed to update comment:', err);
             setError('Failed to update comment');
@@ -246,7 +245,7 @@ const Comments: React.FC = () => {
             setLoading(true);
             await commentsService.deleteComment(selectedComment.id);
             setOpenDeleteDialog(false);
-            fetchComments(page, rowsPerPage);
+            await fetchComments(page, rowsPerPage);
         } catch (err) {
             console.error('Failed to delete comment:', err);
             setError('Failed to delete comment');
@@ -256,7 +255,7 @@ const Comments: React.FC = () => {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Box sx={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
             <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2}}>
                 <Typography variant="h4">
                     Comments Management
@@ -340,16 +339,19 @@ const Comments: React.FC = () => {
                     <CircularProgress/>
                 </Box>
             ) : (
-                <Paper sx={{width: '100%', mb: 2, boxShadow: 3, borderRadius: 2, overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
-                    <TableContainer sx={{ maxHeight: 'calc(100vh - 260px)' }}>
+                <Paper sx={{
+                    width: '100%',
+                    mb: 2,
+                    boxShadow: 3,
+                    borderRadius: 2,
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}>
+                    <TableContainer sx={{maxHeight: 'calc(100vh - 260px)'}}>
                         <Table stickyHeader size="medium">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell sx={{
-                                        fontWeight: 'bold',
-                                        backgroundColor: '#f5f5f5',
-                                        borderBottom: '2px solid #1976d2'
-                                    }}>ID</TableCell>
                                     <TableCell sx={{
                                         fontWeight: 'bold',
                                         backgroundColor: '#f5f5f5',
@@ -386,9 +388,6 @@ const Comments: React.FC = () => {
                                             '&:hover': {backgroundColor: 'rgba(0, 0, 0, 0.04)'}
                                         }}
                                     >
-                                        <TableCell sx={{maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                                            {comment.id}
-                                        </TableCell>
                                         <TableCell sx={{minWidth: 120}}>
                                             {comment.username || 'Anonymous'}
                                         </TableCell>
@@ -438,7 +437,7 @@ const Comments: React.FC = () => {
                                 ))}
                                 {comments.length === 0 && (
                                     <TableRow>
-                                        <TableCell colSpan={6} align="center">
+                                        <TableCell colSpan={5} align="center">
                                             No comments found
                                         </TableCell>
                                     </TableRow>

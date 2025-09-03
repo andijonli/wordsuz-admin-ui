@@ -453,11 +453,6 @@ const Words: React.FC = () => {
                                         fontWeight: 'bold',
                                         backgroundColor: '#f5f5f5',
                                         borderBottom: '2px solid #1976d2'
-                                    }}>ID</TableCell>
-                                    <TableCell sx={{
-                                        fontWeight: 'bold',
-                                        backgroundColor: '#f5f5f5',
-                                        borderBottom: '2px solid #1976d2'
                                     }}>English</TableCell>
                                     <TableCell sx={{
                                         fontWeight: 'bold',
@@ -505,9 +500,6 @@ const Words: React.FC = () => {
                                             '&:hover': {backgroundColor: 'rgba(0, 0, 0, 0.04)'}
                                         }}
                                     >
-                                        <TableCell sx={{maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                                            {word.id}
-                                        </TableCell>
                                         <TableCell sx={{minWidth: 120}}>
                                             {word.titleEng}
                                         </TableCell>
@@ -572,7 +564,7 @@ const Words: React.FC = () => {
                                 ))}
                                 {words.length === 0 && (
                                     <TableRow>
-                                        <TableCell colSpan={9} align="center">
+                                        <TableCell colSpan={8} align="center">
                                             No words found
                                         </TableCell>
                                     </TableRow>

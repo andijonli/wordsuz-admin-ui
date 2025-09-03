@@ -135,7 +135,6 @@ const WordDetail: React.FC = () => {
             });
         }
     }, [word]);
-    // eslint-disable-next-line
     const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
     };
