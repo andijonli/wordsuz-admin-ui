@@ -16,6 +16,8 @@ import Users from './pages/Users';
 import Comments from './pages/Comments';
 import Words from './pages/Words';
 import WordDetail from './pages/WordDetail';
+import Games from './pages/Games';
+import GameDetail from './pages/GameDetail';
 
 // Create a theme
 const theme = createTheme({
@@ -54,9 +56,8 @@ function App() {
               <Route path="comments" element={<Comments />} />
               <Route path="words" element={<Words />} />
               <Route path="words/:wordId" element={<WordDetail />} />
-              {/* Add more routes here as you create more pages */}
-              {/* <Route path="bookmarks" element={<Bookmarks />} /> */}
-              {/* <Route path="translators" element={<Translators />} /> */}
+              <Route path="games" element={<Games />} />
+              <Route path="games/:id" element={<GameDetail />} />
             </Route>
 
             {/* Catch all route */}

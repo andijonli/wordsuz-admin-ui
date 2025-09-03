@@ -25,6 +25,7 @@ import {
     Dashboard as DashboardIcon,
     Logout as LogoutIcon,
     People as PeopleIcon,
+    SportsEsports as SportsEsportsIcon,
 } from '@mui/icons-material';
 
 import {useAuth} from "../contexts/UseAuth.tsx";
@@ -42,6 +43,7 @@ const menuItems: MenuItem[] = [
     {text: 'Dashboard', icon: <DashboardIcon/>, path: '/dashboard'},
     {text: 'Users', icon: <PeopleIcon/>, path: '/users'},
     {text: 'Words', icon: <BookIcon/>, path: '/words'},
+    {text: 'Games', icon: <SportsEsportsIcon/>, path: '/games'},
     {text: 'Comments', icon: <CommentIcon/>, path: '/comments'},
 ];
 
@@ -190,6 +192,7 @@ const Layout: React.FC = () => {
             <Box
                 component="main"
                 sx={{
+                    minHeight: '100vh',
                     flexGrow: 1,
                     p: 3,
                     width: {sm: `calc(100% - ${currentDrawerWidth}px)`},

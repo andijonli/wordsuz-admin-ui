@@ -1,9 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Reset container constraints from Vite template to allow full-width admin layout */
 
 .logo {
   height: 6em;

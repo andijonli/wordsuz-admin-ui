@@ -9,7 +9,10 @@ import type {
     UserStats,
     VerbForm,
     Word,
-    WordDefinition
+    WordDefinition,
+    Game,
+    GameQuestion,
+    GameAnswer
 } from '../types';
 
 const apiURL = import.meta.env.VITE_API_URL;
@@ -159,6 +162,53 @@ export const wordsService = {
     },
 };
 
+// Games service
+export const gamesService = {
+    getGames: async (page = 1, limit = 10): Promise<PaginatedResponse<Game>> => {
+        const response = await api.get<PaginatedResponse<Game>>(`/games?page=${page}&limit=${limit}`);
+        return response.data;
+    },
+    getGame: async (id: string): Promise<Game> => {
+        const response = await api.get<Game>(`/games/${id}`);
+        return response.data;
+    },
+    createGame: async (data: Partial<Game>): Promise<Game> => {
+        const response = await api.post<Game>('/games', data);
+        return response.data;
+    },
+    updateGame: async (id: string, data: Partial<Game>): Promise<Game> => {
+        const response = await api.patch<Game>(`/games/${id}`, data);
+        return response.data;
+    },
+    deleteGame: async (id: string): Promise<void> => {
+        await api.delete<void>(`/games/${id}`);
+    },
+    // questions
+    addQuestion: async (gameId: string, data: Partial<GameQuestion>): Promise<GameQuestion> => {
+        const response = await api.post<GameQuestion>(`/games/${gameId}/questions`, data);
+        return response.data;
+    },
+    updateQuestion: async (questionId: string, data: Partial<GameQuestion>): Promise<GameQuestion> => {
+        const response = await api.patch<GameQuestion>(`/games/questions/${questionId}`, data);
+        return response.data;
+    },
+    deleteQuestion: async (questionId: string): Promise<void> => {
+        await api.delete<void>(`/games/questions/${questionId}`);
+    },
+    // answers
+    addAnswer: async (questionId: string, data: Partial<GameAnswer>): Promise<GameAnswer> => {
+        const response = await api.post<GameAnswer>(`/games/questions/${questionId}/answers`, data);
+        return response.data;
+    },
+    updateAnswer: async (answerId: string, data: Partial<GameAnswer>): Promise<GameAnswer> => {
+        const response = await api.patch<GameAnswer>(`/games/answers/${answerId}`, data);
+        return response.data;
+    },
+    deleteAnswer: async (answerId: string): Promise<void> => {
+        await api.delete<void>(`/games/answers/${answerId}`);
+    },
+};
+
 // Comments service
 export const commentsService = {
     getComments: async (page = 1, limit = 10, search?: string) => {
@@ -166,15 +216,15 @@ export const commentsService = {
         if (search) {
             url += `&search=${encodeURIComponent(search)}`;
         }
-        const response = await api.get<ApiResponse<any>>(url);
+        const response = await api.get<ApiResponse<PaginatedResponse<Comment>>>(url);
         return response.data.data;
     },
-    updateComment: async (id: string, data: any) => {
-        const response = await api.patch<ApiResponse<any>>(`/comments/${id}`, data);
+    updateComment: async (id: string, data: Partial<Comment>) => {
+        const response = await api.patch<ApiResponse<Comment>>(`/comments/${id}`, data);
         return response.data.data;
     },
     deleteComment: async (id: string) => {
-        const response = await api.delete<ApiResponse<any>>(`/comments/${id}`);
+        const response = await api.delete<ApiResponse<{ id: string }>>(`/comments/${id}`);
         return response.data.data;
     },
 };

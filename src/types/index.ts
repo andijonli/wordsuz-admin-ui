@@ -128,3 +128,29 @@ export interface PaginatedResponse<T> {
     limit: number;
   };
 }
+
+// Games types
+export interface Game {
+  id: string;
+  title: string;
+  description?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GameQuestion {
+  id: string;
+  text: string;
+  gameId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GameAnswer {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+  questionId: string;
+  createdAt: string;
+  updatedAt: string;
+}
