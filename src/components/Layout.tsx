@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {Outlet, useNavigate} from 'react-router-dom';
 import {
-    AppBar,
     Box,
-    Button,
     CssBaseline,
     Divider,
     Drawer,
@@ -26,7 +24,6 @@ import {
     Comment as CommentIcon,
     Dashboard as DashboardIcon,
     Logout as LogoutIcon,
-    Menu as MenuIcon,
     People as PeopleIcon,
 } from '@mui/icons-material';
 
@@ -52,7 +49,7 @@ const Layout: React.FC = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [drawerExpanded, setDrawerExpanded] = useState(true);
     const [isHovering, setIsHovering] = useState(false);
-    const {user, logout} = useAuth();
+    const {logout} = useAuth();
     const navigate = useNavigate();
     const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
 
@@ -143,40 +140,6 @@ const Layout: React.FC = () => {
     return (
         <Box sx={{display: 'flex'}}>
             <CssBaseline/>
-            <AppBar
-                position="fixed"
-                sx={{
-                    width: {sm: `calc(100% - ${currentDrawerWidth}px)`},
-                    ml: {sm: `${currentDrawerWidth}px`},
-                    transition: theme => theme.transitions.create(['width', 'margin'], {
-                        easing: theme.transitions.easing.sharp,
-                        duration: theme.transitions.duration.leavingScreen,
-                    }),
-                }}
-            >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{mr: 2, display: {sm: 'none'}}}
-                    >
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div" sx={{flexGrow: 1}}>
-                        Admin Panel
-                    </Typography>
-                    {user && (
-                        <Typography variant="body1" sx={{mr: 2}}>
-                            {user.email}
-                        </Typography>
-                    )}
-                    <Button color="inherit" onClick={handleLogout}>
-                        Logout
-                    </Button>
-                </Toolbar>
-            </AppBar>
             <Box
                 component="nav"
                 sx={{
@@ -236,7 +199,6 @@ const Layout: React.FC = () => {
                     }),
                 }}
             >
-                <Toolbar/>
                 <Outlet/>
             </Box>
         </Box>
