@@ -350,7 +350,7 @@ const Words: React.FC = () => {
     };
 
     return (
-        <Box sx={{height: '100%'}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2}}>
                 <Typography variant="h4">
                     Words Management
@@ -444,8 +444,8 @@ const Words: React.FC = () => {
                     <CircularProgress/>
                 </Box>
             ) : (
-                <Paper sx={{width: '100%', mb: 2, boxShadow: 3, borderRadius: 2, overflow: 'hidden'}}>
-                    <TableContainer sx={{minHeight: 700, maxHeight: '75vh'}}>
+                <Paper sx={{width: '100%', mb: 2, boxShadow: 3, borderRadius: 2, overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
+                    <TableContainer sx={{ maxHeight: 'calc(100vh - 260px)' }}>
                         <Table stickyHeader size="medium">
                             <TableHead>
                                 <TableRow>

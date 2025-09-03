@@ -98,7 +98,7 @@ const Users: React.FC = () => {
     };
 
     return (
-        <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Typography variant="h4" gutterBottom>
                 Users Management
             </Typography>
@@ -128,8 +128,8 @@ const Users: React.FC = () => {
                             <CircularProgress/>
                         </Box>
                     ) : (
-                        <Paper sx={{width: '100%', mb: 2, boxShadow: 3, borderRadius: 2, overflow: 'hidden'}}>
-                            <TableContainer sx={{minHeight: 700, maxHeight: '75vh'}}>
+                        <Paper sx={{width: '100%', mb: 2, boxShadow: 3, borderRadius: 2, overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
+                            <TableContainer sx={{ maxHeight: 'calc(100vh - 260px)' }}>
                                 <Table stickyHeader size="medium">
                                     <TableHead>
                                         <TableRow>
