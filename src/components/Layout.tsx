@@ -21,7 +21,6 @@ import {
 } from '@mui/material';
 import {
     Book as BookIcon,
-    Bookmark as BookmarkIcon,
     ChevronLeft as ChevronLeftIcon,
     ChevronRight as ChevronRightIcon,
     Comment as CommentIcon,
@@ -29,13 +28,12 @@ import {
     Logout as LogoutIcon,
     Menu as MenuIcon,
     People as PeopleIcon,
-    Translate as TranslateIcon,
 } from '@mui/icons-material';
 
 import {useAuth} from "../contexts/UseAuth.tsx";
 
 const drawerWidth = 240;
-const miniDrawerWidth = 65; // Width when collapsed
+const miniDrawerWidth = 65;
 
 interface MenuItem {
     text: string;
@@ -47,9 +45,7 @@ const menuItems: MenuItem[] = [
     {text: 'Dashboard', icon: <DashboardIcon/>, path: '/dashboard'},
     {text: 'Users', icon: <PeopleIcon/>, path: '/users'},
     {text: 'Words', icon: <BookIcon/>, path: '/words'},
-    {text: 'Bookmarks', icon: <BookmarkIcon/>, path: '/bookmarks'},
     {text: 'Comments', icon: <CommentIcon/>, path: '/comments'},
-    {text: 'Translators', icon: <TranslateIcon/>, path: '/translators'},
 ];
 
 const Layout: React.FC = () => {

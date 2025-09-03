@@ -12,12 +12,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const location = useLocation();
 
   if (isLoading) {
-    // You could render a loading spinner here
     return <div>Loading...</div>;
   }
 
   if (!isAuthenticated) {
-    // Redirect to the login page if not authenticated
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
